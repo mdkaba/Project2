@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+langchain
+chromadb
+wikipedia
+beautifulsoup4
+requests
+ollama
+faiss-cpu
+python-dotenv
