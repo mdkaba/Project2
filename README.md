@@ -56,12 +56,17 @@ A collaborative project for Concordia University implementing a multi-agent chat
    ```bash
    pip install -r requirements.txt
    ```
-
-3. Set up environment variables:
+   
+3. Run the chatbot:
+   ```bash
+   uvicorn app.main:app --reload
+   ```
+   
+4. Set up environment variables:
    - Copy `.env.example` to `.env`
    - Update variables as needed
 
-4. Run tests to verify setup:
+5. Run tests to verify setup:
    ```bash
    python backend/app/tests/test_ollama.py
    python backend/app/tests/test_langchain.py
