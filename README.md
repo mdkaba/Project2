@@ -1,135 +1,223 @@
-# Multi-Agent Chatbot System
+# Concordia AI Assistant
 
-A collaborative project for Concordia University implementing a multi-agent chatbot system using modern AI technologies.
+A multi-agent chatbot system for Concordia University that provides information about admissions, AI topics, and general university information through a clean, modern UI designed with Concordia's branding.
+
+## Project Overview
+
+This project implements a ChatGPT-like interface for Concordia University that connects to a multi-agent backend system. The system utilizes LLMs through Ollama to provide specialized responses based on the query type, with agents for admissions information, AI expertise, and general university knowledge.
+
+The frontend is built with React and TypeScript, featuring a responsive UI that matches Concordia's brand colors (burgundy, gold, and grey/beige). The backend uses FastAPI with SQLite for conversation history persistence and FAISS for vector storage to enable retrieval-augmented generation (RAG).
+
+## Features
+
+### Frontend
+- Clean, responsive UI matching Concordia University's brand colors
+- Animated typing indicators and loading states
+- Error handling with user-friendly error messages
+- Persistent conversation history
+- Agent-specific message styling
+- Mobile-responsive design
+
+### Backend
+- FastAPI application with CORS support
+- Multi-agent system with specialized knowledge agents:
+  - AdmissionsAgent: For university admission queries
+  - AIExpertAgent: For AI-related technical questions
+  - GeneralAgent: For general university information
+- Retrieval-augmented generation (RAG) using FAISS vector store
+- Conversation history persistence with SQLite
+- Integration with Ollama for LLM capabilities
+- Knowledge integration from multiple sources:
+  - Concordia University website content
+  - Wikipedia
+  - ArXiv
+  - GitHub
+  - Web search results
 
 ## Project Structure
 
 ```
-.
-├── backend/              # Python FastAPI backend
-│   ├── app/             # Application code
-│   │   ├── agents/      # Agent implementations
-│   │   ├── models/      # Data models
-│   │   ├── services/    # Business logic
-│   │   └── tests/       # Test files
-│   └── requirements.txt # Python dependencies
-├── frontend/            # React TypeScript frontend
-│   ├── src/            # Source code
-│   │   ├── components/ # React components
-│   │   ├── context/    # React context
-│   │   ├── hooks/      # Custom hooks
-│   │   ├── services/   # API services
-│   │   ├── types/      # TypeScript types
-│   │   └── utils/      # Utility functions
-│   └── package.json    # Node.js dependencies
-└── data/               # Data storage
-    └── vectorstore/    # FAISS vector store data
+Project2/
+├── .env                      # Environment variables
+├── backend/                  # Backend Python code
+│   ├── app/
+│   │   ├── agents/           # Agent implementations
+│   │   ├── api/              # FastAPI endpoints
+│   │   ├── core/             # Core configuration and utilities
+│   │   ├── knowledge/        # Knowledge retrieval clients
+│   │   ├── models/           # SQLAlchemy models
+│   │   ├── repositories/     # Database repositories
+│   │   ├── scripts/          # Data ingestion scripts
+│   │   ├── services/         # Business logic services
+│   │   ├── vectorstores/     # Vector database implementations
+│   │   └── main.py           # Application entry point
+│   └── management/           # Management scripts
+├── frontend/                 # Frontend React application
+│   ├── public/               # Static assets
+│   ├── src/
+│   │   ├── assets/           # Frontend assets
+│   │   ├── components/       # React components
+│   │   ├── hooks/            # Custom React hooks
+│   │   ├── services/         # API services
+│   │   ├── types/            # TypeScript type definitions
+│   │   ├── utils/            # Utility functions
+│   │   ├── App.tsx           # Root application component
+│   │   ├── SimpleChat.tsx    # Main chat implementation
+│   │   └── main.tsx          # Application entry point
+│   ├── package.json          # Frontend dependencies
+│   └── vite.config.ts        # Vite configuration
+├── data/                     # Data files
+│   ├── database/             # SQLite database
+│   └── vector_store/         # FAISS vector store files
+└── requirements.txt          # Python dependencies
 ```
 
 ## Setup Instructions
 
 ### Prerequisites
 
-1. **Python 3.9+**
-   - Download and install from [python.org](https://www.python.org/downloads/)
-   - Verify installation: `python --version`
+- Python 3.10 or higher
+- Node.js 18 or higher
+- Ollama (for local LLM support)
+- Git
 
-2. **Node.js and npm**
-   - Download and install from [nodejs.org](https://nodejs.org/)
-   - Verify installation: `node --version` and `npm --version`
+### 1. Clone the Repository
 
-3. **Ollama**
-   - Download and install from [ollama.ai](https://ollama.ai/)
-   - Start Ollama service: `ollama serve`
-   - Pull Mistral model: `ollama pull mistral`
+```bash
+git clone https://github.com/mdkaba/Project2.git
+cd Project2
+```
 
-### Backend Setup
+### 2. Backend Setup
 
-1. Create and activate virtual environment:
-   ```bash
-   python -m venv venv
-   .\venv\Scripts\activate  # Windows
-   source venv/bin/activate # Linux/Mac
-   ```
+#### Create and Activate a Virtual Environment
 
-2. Install Python dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-   
-3. Run the chatbot:
-   ```bash
-   uvicorn app.main:app --reload
-   ```
-   
-4. Set up environment variables:
-   - Copy `.env.example` to `.env`
-   - Update variables as needed
+```bash
+# Windows
+python -m venv venv
+venv\Scripts\activate
 
-5. Run tests to verify setup:
-   ```bash
-   python backend/app/tests/test_ollama.py
-   python backend/app/tests/test_langchain.py
-   python backend/app/tests/test_vectorstore.py
-   ```
+# macOS/Linux
+python -m venv venv
+source venv/bin/activate
+```
 
-### Frontend Setup
+#### Install Python Dependencies
 
-1. Install dependencies:
-   ```bash
-   cd frontend
-   npm install
-   ```
+```bash
+pip install -r requirements.txt
+```
 
-2. Start development server:
-   ```bash
-   npm run dev
-   ```
+#### Environment Variables
 
-3. Access the application at `http://localhost:5173`
+The project includes a `.env` file with the following configuration. Update paths as needed for your system:
 
-## Development Workflow
+```
+# API Configuration
+API_V1_PREFIX=/api/v1
+DEBUG=True
 
-1. Create a new branch for your feature:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
+# CORS Settings
+CORS_ORIGINS=http://localhost:3000,http://localhost:5173,http://localhost:5174
 
-2. Make your changes and commit them:
-   ```bash
-   git add .
-   git commit -m "Description of your changes"
-   ```
+# Database Configuration (SQLite)
+DATABASE_URL=sqlite+aiosqlite:///./data/database/chat_history.db
 
-3. Push your changes and create a pull request:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
+# Ollama Configuration
+OLLAMA_API_BASE_URL=http://localhost:11434
+OLLAMA_MODEL_NAME=mistral
 
-## Testing
+# Vector Store Settings
+VECTOR_STORE_PATH=./data/vector_store
 
-- Backend tests: Run `python -m pytest backend/app/tests`
-- Frontend tests: Run `npm test` in the frontend directory
+# Logging
+LOG_LEVEL=DEBUG
+LOG_FILE=./logs/app.log
+```
 
-## Current Status
+#### Initialize Vector Store (Optional)
 
-- [x] Project structure set up
-- [x] Backend dependencies installed
-- [x] Frontend dependencies installed
-- [x] Basic tests passing
-- [ ] Chatbot implementation
-- [ ] Multi-agent system
-- [ ] User interface
-- [ ] Deployment configuration
+To create/update the knowledge base:
 
-## Team Members
+```bash
+cd backend
+python -m app.scripts.ingest_knowledge
+```
 
-- Mamadou
-- Kaloyan
-- Darian
-- Daniel
-- Jaskirat
+### 3. Ollama Setup
+
+Ollama must be installed and running with the Mistral model:
+
+#### Install Ollama
+
+Follow the instructions at https://ollama.ai/ to install Ollama for your operating system.
+
+#### Pull the Mistral Model
+
+```bash
+ollama pull mistral
+```
+
+#### Start Ollama
+
+```bash
+# Start the Ollama server
+ollama serve
+```
+
+### 4. Frontend Setup
+
+```bash
+cd frontend
+npm install
+```
+
+### 5. Running the Application
+
+#### Start the Backend Server
+
+In a terminal window:
+
+```bash
+cd backend
+python -m uvicorn app.main:app --reload --port 8000
+```
+
+#### Start the Frontend Development Server
+
+In another terminal window:
+
+```bash
+cd frontend
+npm run dev
+```
+
+The application should now be running at http://localhost:5173 or http://localhost:5174
+
+### 6. Usage
+
+- Open the frontend URL in your browser
+- Start chatting with the AI assistant
+- Different colors indicate different agent responses:
+  - Burgundy (#912338): Admissions Agent
+  - Gold (#9D8845): AI Expert Agent
+  - Grey/Beige (#D4D0C8): General Agent
+
+## Contributors
+
+Mamadou Kaba 
+
+Darian Dotchev 
+
+Kaloyan Kirilov 
+
+Daniel François 
+
+Jaskirat Kaur 
+
+
+
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
