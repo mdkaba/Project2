@@ -1,14 +1,14 @@
-# Concordia AI Assistant
+# Concordia AI Assistant 
 
 A multi-agent chatbot system for Concordia University that provides information about admissions, AI topics, and general university information through a clean, modern UI designed with Concordia's branding.
 
-## Project Overview
+## 📌 Project Overview
 
 This project implements a ChatGPT-like interface for Concordia University that connects to a multi-agent backend system. The system utilizes LLMs through Ollama to provide specialized responses based on the query type, with agents for admissions information, AI expertise, and general university knowledge.
 
 The frontend is built with React and TypeScript, featuring a responsive UI that matches Concordia's brand colors (burgundy, gold, and grey/beige). The backend uses FastAPI with SQLite for conversation history persistence and FAISS for vector storage to enable retrieval-augmented generation (RAG).
 
-## Features
+## 🚀 Features
 
 ### Frontend
 - Clean, responsive UI matching Concordia University's brand colors
@@ -34,11 +34,10 @@ The frontend is built with React and TypeScript, featuring a responsive UI that 
   - GitHub
   - Web search results
 
-## Project Structure
+## 📂 Project Structure
 
 ```
-Project2/
-├── .env                      # Environment variables
+📂Project2/
 ├── backend/                  # Backend Python code
 │   ├── app/
 │   │   ├── agents/           # Agent implementations
@@ -72,7 +71,7 @@ Project2/
 └── requirements.txt          # Python dependencies
 ```
 
-## Setup Instructions
+## 🛠 Setup Instructions
 
 ### Prerequisites
 
@@ -81,14 +80,14 @@ Project2/
 - Ollama (for local LLM support)
 - Git
 
-### 1. Clone the Repository
+### 1️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/mdkaba/Project2.git
 cd Project2
 ```
 
-### 2. Backend Setup
+### 2️⃣ Backend Setup
 
 #### Create and Activate a Virtual Environment
 
@@ -144,7 +143,7 @@ cd backend
 python -m app.scripts.ingest_knowledge
 ```
 
-### 3. Ollama Setup
+### 3️⃣ Ollama Setup
 
 Ollama must be installed and running with the Mistral model:
 
@@ -165,14 +164,14 @@ ollama pull mistral
 ollama serve
 ```
 
-### 4. Frontend Setup
+### 4️⃣ Frontend Setup
 
 ```bash
 cd frontend
 npm install
 ```
 
-### 5. Running the Application
+### 5️⃣ Running the Application
 
 #### Start the Backend Server
 
@@ -194,16 +193,13 @@ npm run dev
 
 The application should now be running at http://localhost:5173 or http://localhost:5174
 
-### 6. Usage
+### 6️⃣ Usage
 
 - Open the frontend URL in your browser
 - Start chatting with the AI assistant
-- Different colors indicate different agent responses:
-  - Burgundy (#912338): Admissions Agent
-  - Gold (#9D8845): AI Expert Agent
-  - Grey/Beige (#D4D0C8): General Agent
 
-## Contributors
+
+## 👨‍💻 Contributors
 
 Mamadou Kaba 
 
@@ -218,6 +214,6 @@ Jaskirat Kaur
 
 
 
-## License
+## 📜 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
