@@ -4,7 +4,7 @@ A multi-agent chatbot system for Concordia University that provides information 
 
 ## 📌 Project Overview
 
-This project implements a ChatGPT-like interface for Concordia University that connects to a multi-agent backend system. The system utilizes LLMs through Ollama to provide specialized responses based on the query type, with agents for admissions information, AI expertise, and general university knowledge.
+This project implements a ChatGPT-like interface for Concordia University that connects to a multi-agent backend system. The system utilizes LLMs through Ollama to provide specialized responses based on the query type, with agents for admissions information, AI expertise, and general knowledge.
 
 The frontend is built with React and TypeScript, featuring a responsive UI that matches Concordia's brand colors (burgundy, gold, and grey/beige). The backend uses FastAPI with SQLite for conversation history persistence and FAISS for vector storage to enable retrieval-augmented generation (RAG).
 
@@ -23,7 +23,7 @@ The frontend is built with React and TypeScript, featuring a responsive UI that 
 - Multi-agent system with specialized knowledge agents:
   - AdmissionsAgent: For university admission queries
   - AIExpertAgent: For AI-related technical questions
-  - GeneralAgent: For general university information
+  - GeneralAgent: For general information
 - Retrieval-augmented generation (RAG) using FAISS vector store
 - Conversation history persistence with SQLite
 - Integration with Ollama for LLM capabilities
