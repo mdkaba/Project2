@@ -1,5 +1,8 @@
 # Concordia AI Assistant 
 
+![image](https://github.com/user-attachments/assets/0b228972-bc7d-4cce-85f9-a8ba148639cc)
+
+
 A multi-agent chatbot system for Concordia University that provides information about admissions, AI topics, and general university information through a clean, modern UI designed with Concordia's branding.
 
 ## 📌 Project Overview
